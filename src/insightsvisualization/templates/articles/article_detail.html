@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}{{ article.title }} — Insights Visualization{% endblock %}
+
+{% block content %}
+<article class="py-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'articles:article_list' %}">Articles</a></li>
+                <li class="breadcrumb-item active">{{ article.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <header class="mb-4">
+                    <h1 class="mb-3">{{ article.title }}</h1>
+                    <div class="d-flex flex-wrap align-items-center gap-3 text-muted mb-3">
+                        <span><i class="bi bi-person"></i> {{ article.author.get_full_name|default:article.author.username }}</span>
+                        <span><i class="bi bi-calendar3"></i> {{ article.published_date|date:"F d, Y" }}</span>
+                    </div>
+                    {% if article.tags.exists %}
+                    <div class="card-tags">
+                        {% for tag in article.tags.all %}
+                        <a href="{% url 'articles:article_list' %}?tag={{ tag.slug }}"
+                           class="badge bg-info-subtle text-info-emphasis text-decoration-none">
+                            {{ tag.name }}
+                        </a>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </header>
+
+                {% if article.featured_image %}
+                <img src="{{ article.featured_image.url }}" class="img-fluid rounded mb-4" alt="{{ article.title }}">
+                {% endif %}
+
+                <div class="content-body">
+                    {{ article.body|linebreaks }}
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
+{% endblock %}

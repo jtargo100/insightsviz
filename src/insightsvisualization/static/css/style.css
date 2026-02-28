@@ -1,0 +1,400 @@
+/* ============================================
+   Insights Visualization — Custom Styles
+   ============================================ */
+
+:root {
+    --iv-primary: #2563eb;
+    --iv-primary-dark: #1d4ed8;
+    --iv-secondary: #64748b;
+    --iv-accent: #7c3aed;
+    --iv-surface: #ffffff;
+    --iv-bg: #f8fafc;
+    --iv-text: #1e293b;
+    --iv-text-muted: #64748b;
+    --iv-border: #e2e8f0;
+    --iv-radius: 0.75rem;
+    --iv-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+    --iv-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --iv-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --iv-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --iv-font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* ---- Base ---- */
+body {
+    font-family: var(--iv-font);
+    color: var(--iv-text);
+    background-color: var(--iv-bg);
+    line-height: 1.7;
+}
+
+/* ---- Navbar ---- */
+.navbar {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--iv-border);
+    padding: 0.75rem 0;
+    box-shadow: var(--iv-shadow);
+}
+
+.navbar-brand {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--iv-text) !important;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.navbar-brand i {
+    color: var(--iv-primary);
+    font-size: 1.5rem;
+}
+
+.navbar-brand strong {
+    color: var(--iv-primary);
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 0.925rem;
+    color: var(--iv-secondary) !important;
+    transition: color 0.2s ease;
+    padding: 0.5rem 0.85rem !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--iv-primary) !important;
+}
+
+/* ---- Hero Section ---- */
+.hero-section {
+    background: linear-gradient(135deg, #f0f4ff 0%, #e8f0fe 50%, #f0e6ff 100%);
+    padding: 5rem 0 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-title {
+    font-size: 3.25rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.25rem;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, var(--iv-primary), var(--iv-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--iv-secondary);
+    max-width: 540px;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+}
+
+.hero-graphic {
+    font-size: 12rem;
+    color: var(--iv-primary);
+    opacity: 0.12;
+    line-height: 1;
+}
+
+.min-vh-50 {
+    min-height: 50vh;
+}
+
+/* ---- Section Headers ---- */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.section-header h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.section-header h2 i {
+    color: var(--iv-primary);
+    margin-right: 0.5rem;
+}
+
+.page-header h1 {
+    font-weight: 700;
+}
+
+.page-header h1 i {
+    color: var(--iv-primary);
+    margin-right: 0.5rem;
+}
+
+/* ---- Content Cards ---- */
+.content-card {
+    border: 1px solid var(--iv-border);
+    border-radius: var(--iv-radius);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    background: var(--iv-surface);
+}
+
+.content-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--iv-shadow-lg);
+}
+
+.content-card .card-title a {
+    text-decoration: none;
+    color: var(--iv-text);
+    font-weight: 600;
+}
+
+.content-card .card-title a:hover {
+    color: var(--iv-primary);
+}
+
+.content-card .card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-tags .badge {
+    font-weight: 500;
+    font-size: 0.75rem;
+    padding: 0.35em 0.65em;
+}
+
+.card-meta {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--iv-border);
+}
+
+/* ---- Placeholder Images ---- */
+.placeholder-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+    color: var(--iv-primary);
+    font-size: 3rem;
+    opacity: 0.7;
+}
+
+.placeholder-img-articles {
+    background: linear-gradient(135deg, #cffafe, #a5f3fc);
+    color: #0891b2;
+}
+
+.placeholder-img-blog {
+    background: linear-gradient(135deg, #d1fae5, #a7f3d0);
+    color: #059669;
+}
+
+/* ---- CTA Section ---- */
+.cta-section {
+    background: linear-gradient(135deg, var(--iv-primary), var(--iv-accent));
+    color: white;
+    padding: 4rem 0;
+}
+
+.cta-section h2 {
+    font-weight: 700;
+}
+
+.cta-section .lead {
+    opacity: 0.9;
+}
+
+/* ---- Content Body ---- */
+.content-body {
+    font-size: 1.08rem;
+    line-height: 1.85;
+}
+
+.content-body h2,
+.content-body h3,
+.content-body h4 {
+    margin-top: 2rem;
+    font-weight: 700;
+}
+
+.content-body pre {
+    font-family: var(--iv-font-mono);
+    background: #f1f5f9;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow-x: auto;
+    font-size: 0.9rem;
+}
+
+.content-body code {
+    font-family: var(--iv-font-mono);
+    font-size: 0.9em;
+}
+
+/* ---- Comments ---- */
+.comment-card {
+    border: 1px solid var(--iv-border);
+    border-radius: var(--iv-radius);
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--iv-primary), var(--iv-accent));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+    background: #1e293b;
+    color: #cbd5e1;
+    padding: 3rem 0 1.5rem;
+}
+
+.site-footer h5,
+.site-footer h6 {
+    color: white;
+    font-weight: 600;
+}
+
+.site-footer h5 i {
+    color: var(--iv-primary);
+}
+
+.site-footer h5 strong {
+    color: var(--iv-primary);
+}
+
+.footer-links li {
+    margin-bottom: 0.35rem;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.925rem;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
+
+.site-footer hr {
+    border-color: #334155;
+    margin: 2rem 0 1rem;
+}
+
+/* ---- Auth Cards ---- */
+.card.shadow-sm {
+    border: 1px solid var(--iv-border);
+    border-radius: var(--iv-radius);
+}
+
+/* ---- Breadcrumbs ---- */
+.breadcrumb {
+    font-size: 0.9rem;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    color: var(--iv-primary);
+}
+
+/* ---- Notebook Rendered ---- */
+.notebook-rendered {
+    font-family: var(--iv-font);
+}
+
+.notebook-rendered .nb-code pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+    margin: 0;
+}
+
+.notebook-rendered .nb-output {
+    background: #f8fafc;
+    border-left: 3px solid var(--iv-primary);
+    padding: 1rem;
+    margin: 0.5rem 0 1.5rem;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.notebook-rendered .nb-markdown {
+    padding: 0.5rem 0;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-section {
+        padding: 3rem 0 2.5rem;
+    }
+
+    .cta-section {
+        padding: 3rem 0;
+    }
+}
+
+/* ---- Pagination ---- */
+.page-link {
+    border-radius: 0.5rem !important;
+    margin: 0 0.15rem;
+    border: 1px solid var(--iv-border);
+    color: var(--iv-text);
+}
+
+.page-item.active .page-link {
+    background-color: var(--iv-primary);
+    border-color: var(--iv-primary);
+}
+
+/* ---- Buttons ---- */
+.btn-primary {
+    background-color: var(--iv-primary);
+    border-color: var(--iv-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--iv-primary-dark);
+    border-color: var(--iv-primary-dark);
+}
+
+/* ---- Background Sections ---- */
+.bg-light {
+    background-color: #f1f5f9 !important;
+}

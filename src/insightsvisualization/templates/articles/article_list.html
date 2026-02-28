@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Articles — Insights Visualization{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="page-header mb-5">
+            <h1><i class="bi bi-file-earmark-text"></i> Articles</h1>
+            <p class="lead text-muted">
+                In-depth explorations of data visualization techniques and insights.
+            </p>
+        </div>
+
+        {% if current_tag %}
+        <div class="mb-4">
+            <span class="badge bg-info fs-6">
+                <i class="bi bi-tag"></i> {{ current_tag }}
+                <a href="{% url 'articles:article_list' %}" class="text-white ms-2">&times;</a>
+            </span>
+        </div>
+        {% endif %}
+
+        {% if articles %}
+        <div class="row g-4">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card content-card h-100">
+                    {% if article.featured_image %}
+                    <img src="{{ article.featured_image.url }}" class="card-img-top" alt="{{ article.title }}">
+                    {% else %}
+                    <div class="card-img-top placeholder-img placeholder-img-articles">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <div class="card-tags mb-2">
+                            {% for tag in article.tags.all|slice:":3" %}
+                            <a href="{% url 'articles:article_list' %}?tag={{ tag.slug }}"
+                               class="badge bg-info-subtle text-info-emphasis text-decoration-none">
+                                {{ tag.name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        <h5 class="card-title">
+                            <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text text-muted flex-grow-1">
+                            {{ article.summary|truncatewords:25 }}
+                        </p>
+                        <div class="card-meta">
+                            <small class="text-muted">
+                                <i class="bi bi-person"></i> {{ article.author.get_full_name|default:article.author.username }}
+                                <span class="mx-1">&middot;</span>
+                                <i class="bi bi-calendar3"></i> {{ article.published_date|date:"M d, Y" }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if articles.has_other_pages %}
+        <nav class="mt-5" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if articles.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ articles.previous_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% for num in articles.paginator.page_range %}
+                <li class="page-item {% if articles.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if articles.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ articles.next_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-file-earmark-x display-1 text-muted"></i>
+            <h3 class="mt-3 text-muted">No articles yet</h3>
+            <p class="text-muted">Check back soon for new content!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

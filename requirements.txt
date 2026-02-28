@@ -1,0 +1,4 @@
+django>=5.2.11
+Pillow>=10.0.0
+nbformat>=5.9.0
+nbconvert>=7.8.0

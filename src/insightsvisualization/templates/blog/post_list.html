@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load humanize %}
+
+{% block title %}Blog — Insights Visualization{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="page-header mb-5">
+            <h1><i class="bi bi-pencil-square"></i> Blog</h1>
+            <p class="lead text-muted">
+                Thoughts, tips, and updates from the data visualization world.
+            </p>
+        </div>
+
+        {% if current_tag %}
+        <div class="mb-4">
+            <span class="badge bg-success fs-6">
+                <i class="bi bi-tag"></i> {{ current_tag }}
+                <a href="{% url 'blog:post_list' %}" class="text-white ms-2">&times;</a>
+            </span>
+        </div>
+        {% endif %}
+
+        {% if posts %}
+        <div class="row g-4">
+            {% for post in posts %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card content-card h-100">
+                    {% if post.featured_image %}
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                    {% else %}
+                    <div class="card-img-top placeholder-img placeholder-img-blog">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    {% endif %}
+                    <div class="card-body d-flex flex-column">
+                        <div class="card-tags mb-2">
+                            {% for tag in post.tags.all|slice:":3" %}
+                            <a href="{% url 'blog:post_list' %}?tag={{ tag.slug }}"
+                               class="badge bg-success-subtle text-success-emphasis text-decoration-none">
+                                {{ tag.name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                        <h5 class="card-title">
+                            <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+                        </h5>
+                        <p class="card-text text-muted flex-grow-1">
+                            {{ post.excerpt|truncatewords:25 }}
+                        </p>
+                        <div class="card-meta">
+                            <small class="text-muted">
+                                <i class="bi bi-person"></i> {{ post.author.get_full_name|default:post.author.username }}
+                                <span class="mx-1">&middot;</span>
+                                <i class="bi bi-calendar3"></i> {{ post.published_date|date:"M d, Y" }}
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        {% if posts.has_other_pages %}
+        <nav class="mt-5" aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if posts.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ posts.previous_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                {% endif %}
+                {% for num in posts.paginator.page_range %}
+                <li class="page-item {% if posts.number == num %}active{% endif %}">
+                    <a class="page-link" href="?page={{ num }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">{{ num }}</a>
+                </li>
+                {% endfor %}
+                {% if posts.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ posts.next_page_number }}{% if current_tag %}&tag={{ current_tag }}{% endif %}">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="text-center py-5">
+            <i class="bi bi-pencil display-1 text-muted"></i>
+            <h3 class="mt-3 text-muted">No blog posts yet</h3>
+            <p class="text-muted">Check back soon for new content!</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

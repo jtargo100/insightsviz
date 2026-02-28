@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}About — Insights Visualization{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h1 class="mb-4">About Insights Visualization</h1>
+                <div class="content-body">
+                    <p class="lead">
+                        Insights Visualization is a platform dedicated to exploring and sharing
+                        data stories through interactive Jupyter notebook visualizations,
+                        in-depth articles, and blog posts.
+                    </p>
+
+                    <h3 class="mt-5">What You'll Find Here</h3>
+
+                    <div class="row g-4 my-4">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <div class="mb-3">
+                                        <i class="bi bi-journal-code display-4 text-primary"></i>
+                                    </div>
+                                    <h5>Visualizations</h5>
+                                    <p class="text-muted small">
+                                        Interactive Jupyter notebooks with charts, graphs,
+                                        and data explorations you can learn from.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <div class="mb-3">
+                                        <i class="bi bi-file-earmark-text display-4 text-info"></i>
+                                    </div>
+                                    <h5>Articles</h5>
+                                    <p class="text-muted small">
+                                        In-depth technical articles about data visualization
+                                        techniques, tools, and best practices.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-0 shadow-sm">
+                                <div class="card-body text-center">
+                                    <div class="mb-3">
+                                        <i class="bi bi-pencil-square display-4 text-success"></i>
+                                    </div>
+                                    <h5>Blog</h5>
+                                    <p class="text-muted small">
+                                        Shorter posts sharing insights, tips, and updates
+                                        about the data visualization world.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="mt-5">Share Your Feedback</h3>
+                    <p>
+                        Your feedback matters! Create a free account to leave comments on
+                        visualizations, suggest improvements, and join the discussion.
+                        This platform is built to foster collaboration and learning.
+                    </p>
+
+                    <h3 class="mt-5">Technology</h3>
+                    <p>
+                        This site is built with Django and renders Jupyter notebooks directly
+                        in the browser. Visualizations are published via a Git-based deployment
+                        workflow, ensuring version control and reproducibility.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
